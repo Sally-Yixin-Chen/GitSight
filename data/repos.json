@@ -1,0 +1,7 @@
+[
+  {"name": "facebook/react", "stars": 230000, "forks": 47000, "open_issues": 900, "last_push_days": 2, "contributors": 1620, "size_kb": 180000},
+  {"name": "babel/babel", "stars": 43200, "forks": 5600, "open_issues": 120, "last_push_days": 1, "contributors": 2300, "size_kb": 280000},
+  {"name": "prettier/prettier", "stars": 50000, "forks": 4300, "open_issues": 680, "last_push_days": 10, "contributors": 2200, "size_kb": 14000},
+  {"name": "lodash/lodash", "stars": 60000, "forks": 7000, "open_issues": 70, "last_push_days": 180, "contributors": 300, "size_kb": 1400},
+  {"name": "axios/axios", "stars": 106000, "forks": 11000, "open_issues": 580, "last_push_days": 45, "contributors": 500, "size_kb": 2200}
+]

@@ -6,8 +6,8 @@ from typing import Any, Dict, List
 
 from flask import Flask, abort, redirect, render_template_string, request, url_for
 
-from .hotrank import compute_hotrank
 from .project_detail import get_project_by_name, get_project_detail
+from .ranking import rank_projects
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -24,8 +24,7 @@ def load_projects() -> List[Dict[str, Any]]:
 
 def ranked_projects(projects: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """计算并返回带热度分数的项目列表。"""
-    ranked, _ = compute_hotrank(projects)
-    return ranked
+    return rank_projects(projects)
 
 
 PAGE_STYLE = """
