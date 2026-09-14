@@ -18,7 +18,8 @@ def get_project_by_name(projects: Iterable[Dict[str, Any]], name: str) -> Option
     target = name.strip().casefold()
     for project in projects:
         project_name = str(project.get("name", "")).strip().casefold()
-        if project_name == target:
+        full_name = str(project.get("full_name", "")).strip().casefold()
+        if target in {project_name, full_name}:
             return project
     return None
 
@@ -31,15 +32,16 @@ def get_project_detail(project: Optional[Dict[str, Any]]) -> Optional[Dict[str, 
     if project is None:
         return None
 
-    owner, separator, repository = str(project.get("name", "")).partition("/")
+    project_name = str(project.get("full_name") or project.get("name", ""))
+    owner, separator, repository = project_name.partition("/")
     return {
-        "name": project.get("name", "未命名项目"),
-        "owner": owner if separator else "",
+        "name": project_name or "未命名项目",
+        "owner": project.get("owner") or (owner if separator else ""),
         "repository": repository if separator else str(project.get("name", "")),
         "description": project.get("description") or "暂无项目简介",
         "language": project.get("language") or "未填写",
         "license": project.get("license") or "未填写",
-        "url": project.get("html_url") or f"https://github.com/{project.get('name', '')}",
+        "url": project.get("url") or project.get("html_url") or f"https://github.com/{project_name}",
         "stars": project.get("stars", 0),
         "forks": project.get("forks", 0),
         "open_issues": project.get("open_issues", 0),
