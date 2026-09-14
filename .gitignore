@@ -50,3 +50,4 @@ Thumbs.db
 # Local logs and databases
 *.log
 *.sqlite3
+data/projects.json
