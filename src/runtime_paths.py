@@ -1,0 +1,21 @@
+"""运行时路径：兼容源码运行和 PyInstaller onedir 打包。"""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+
+def application_root() -> Path:
+    """返回应用根目录；打包后使用 exe 所在目录。"""
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parents[1]
+
+
+APPLICATION_ROOT = application_root()
+DEFAULT_DATA_FILE = APPLICATION_ROOT / "data" / "projects.json"
+LEGACY_DATA_FILE = APPLICATION_ROOT / "data" / "repos.json"
+# PyInstaller 6 places bundled data under its internal runtime directory.
+BUNDLED_ROOT = Path(getattr(sys, "_MEIPASS", APPLICATION_ROOT))
+BUNDLED_LEGACY_DATA_FILE = BUNDLED_ROOT / "data" / "repos.json"

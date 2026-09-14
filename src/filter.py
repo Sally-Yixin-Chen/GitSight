@@ -9,7 +9,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping, Sequence
 from typing import Any
 
-try:  # 作为 GitPulse 包运行时
+try:  # 作为 GitSight 包运行时
     from .ranking import get_top_projects
 except ImportError:  # 便于单独运行或测试该模块
     from ranking import get_top_projects

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#FFFFFF"/>
+  <g fill="none" stroke="#2563EB" stroke-width="7" stroke-linecap="round">
+    <circle cx="256" cy="256" r="177"/>
+    <ellipse cx="256" cy="256" rx="78" ry="177"/>
+    <ellipse cx="256" cy="256" rx="177" ry="68"/>
+    <path d="M79 256h354"/>
+  </g>
+  <text x="256" y="307" text-anchor="middle" fill="#171717" font-family="Bahnschrift, Montserrat, Arial, sans-serif" font-size="170" font-weight="800" letter-spacing="-15">GS</text>
+</svg>

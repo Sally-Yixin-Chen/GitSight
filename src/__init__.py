@@ -1,1 +1,1 @@
-"""GitPulse 应用包。"""
+"""GitSight 应用包。"""

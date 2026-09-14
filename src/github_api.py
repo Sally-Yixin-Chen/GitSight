@@ -31,7 +31,7 @@ def _request_json(path: str, params: Mapping[str, Any] | None = None, token: str
     access_token = token or os.getenv("GITHUB_TOKEN")
     headers = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "GitPulse",
+        "User-Agent": "GitSight",
         "X-GitHub-Api-Version": "2022-11-28",
     }
     if access_token:

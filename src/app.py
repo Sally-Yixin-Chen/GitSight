@@ -1,13 +1,27 @@
-"""GitPulse Flask 应用入口。"""
+"""GitSight Flask 应用入口。"""
 
 from typing import Any, Dict, List
 
 from flask import Flask, abort, render_template_string, request, url_for
 
-from .data_refresh import get_diverse_topics, load_cached_projects
-from .filter import get_personalized_top_projects
-from .project_detail import get_project_by_name, get_project_detail
-from .ranking import rank_projects
+try:
+    from .data_refresh import get_diverse_topics, load_cached_projects
+    from .filter import get_personalized_top_projects
+    from .project_detail import get_project_by_name, get_project_detail
+    from .ranking import rank_projects
+except ImportError:
+    # 兼容直接执行 ``python src/app.py`` 的场景。
+    import sys
+    from pathlib import Path
+
+    project_root = Path(__file__).resolve().parents[1]
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+
+    from src.data_refresh import get_diverse_topics, load_cached_projects
+    from src.filter import get_personalized_top_projects
+    from src.project_detail import get_project_by_name, get_project_detail
+    from src.ranking import rank_projects
 
 app = Flask(__name__)
 
@@ -73,11 +87,11 @@ def index():
     selected_topics = request.args.getlist("topic")
     ranked = get_personalized_top_projects(projects, selected_topics, limit=10)
     return render_template_string(
-        """<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>GitPulse 热度排行榜</title>"""
+        """<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>GitSight 热度排行榜</title>"""
         + PAGE_STYLE
         + """</head><body><main class='shell'>
-        <header class='topbar'><a class='brand' href='{{ url_for("index") }}'><span class='brand-mark' aria-hidden='true'><svg viewBox='0 0 24 24'><path d='M4 16.5 9 11l3 3 8-8'/><path d='M15 6h5v5'/></svg></span>GitPulse</a><span class='status'><span class='status-dot' aria-hidden='true'></span>缓存数据已就绪</span></header>
-        <section class='hero'><div><p class='eyebrow'>GitHub discovery dashboard</p><h1>GitHub 热门项目<br><span class='title-accent'>趋势榜。</span></h1><p class='hero-copy'>每周汇总 GitHub 热门项目，结合热度与活跃度生成榜单；选择兴趣标签，即可查看你的专属 TOP10。</p></div>
+        <header class='topbar'><a class='brand' href='{{ url_for("index") }}'><span class='brand-mark' aria-hidden='true'><svg viewBox='0 0 24 24'><path d='M4 16.5 9 11l3 3 8-8'/><path d='M15 6h5v5'/></svg></span>GitSight</a><span class='status'><span class='status-dot' aria-hidden='true'></span>缓存数据已就绪</span></header>
+        <section class='hero'><div><p class='eyebrow'>See GitHub. See What's Next.</p><h1>GitHub 热门项目<br><span class='title-accent'>排行榜</span></h1><p class='hero-copy'>GitHub风向，洞见未来<br>选择兴趣标签，查看你的专属 TOP10</p></div>
         <div class='metric-grid'><div class='metric'><span class='metric-label'>缓存项目</span><strong class='metric-value'>{{ project_count }}</strong></div><div class='metric'><span class='metric-label'>当前榜单</span><strong class='metric-value'>TOP {{ projects|length }}</strong></div></div></section>
         <section class='panel'><div class='panel-head'><div><h2>按兴趣定制榜单</h2><p class='panel-note'>从 15 个差异化 GitHub Topic 中选择，立即得到个性化热度排行。</p></div><a class='clear' href='{{ url_for("index") }}'>重置筛选</a></div>
         <form method='get'><fieldset class='filters'><legend>选择感兴趣的项目标签</legend>{% for topic in topics %}<label class='topic'><input type='checkbox' name='topic' value='{{ topic }}' {% if topic in selected_topics %}checked{% endif %}><span>{{ topic }}</span></label>{% endfor %}<button type='submit'>生成 TOP10</button></fieldset></form>
@@ -118,4 +132,4 @@ def project_detail(name: str):
         detail=detail,
     )
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, host="127.0.0.1", port=5000)

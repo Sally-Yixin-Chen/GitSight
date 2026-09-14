@@ -51,3 +51,6 @@ Thumbs.db
 *.log
 *.sqlite3
 data/projects.json
+
+#testing
+testing/

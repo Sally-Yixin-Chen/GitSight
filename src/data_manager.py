@@ -1,4 +1,4 @@
-"""JSON persistence helpers for GitPulse project records."""
+"""JSON persistence helpers for GitSight project records."""
 
 from __future__ import annotations
 
@@ -7,8 +7,7 @@ import os
 from pathlib import Path
 from typing import Any, Iterable
 
-
-DEFAULT_DATA_FILE = Path("data/projects.json")
+from .runtime_paths import DEFAULT_DATA_FILE
 
 
 def save_projects(projects: Iterable[dict[str, Any]], file_path: str | Path = DEFAULT_DATA_FILE) -> Path:

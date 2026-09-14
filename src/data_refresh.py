@@ -6,14 +6,17 @@ import os
 from pathlib import Path
 from typing import Any
 
-from data_manager import load_projects as load_json_projects
-from data_manager import save_projects
-from github_api import extract_repo_data, search_repositories
+from .data_manager import load_projects as load_json_projects
+from .data_manager import save_projects
+from .github_api import extract_repo_data, search_repositories
+from .runtime_paths import (
+    BUNDLED_LEGACY_DATA_FILE,
+    DEFAULT_DATA_FILE,
+    LEGACY_DATA_FILE,
+)
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CACHE_FILE = PROJECT_ROOT / "data" / "projects.json"
-LEGACY_DATA_FILE = PROJECT_ROOT / "data" / "repos.json"
+DEFAULT_CACHE_FILE = DEFAULT_DATA_FILE
 DEFAULT_QUERY = os.getenv("GITHUB_SEARCH_QUERY", "stars:>1000")
 DEFAULT_RESULTS_PER_PAGE = 30
 
@@ -89,7 +92,9 @@ def load_cached_projects(file_path: str | Path = DEFAULT_CACHE_FILE) -> list[dic
     projects = load_json_projects(file_path)
     if projects or Path(file_path) != DEFAULT_CACHE_FILE:
         return projects
-    return load_json_projects(LEGACY_DATA_FILE)
+    if LEGACY_DATA_FILE.exists():
+        return load_json_projects(LEGACY_DATA_FILE)
+    return load_json_projects(BUNDLED_LEGACY_DATA_FILE)
 
 
 def get_available_topics(projects: list[dict[str, Any]]) -> list[str]:
