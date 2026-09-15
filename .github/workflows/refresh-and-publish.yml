@@ -35,12 +35,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/refresh_projects.py
 
+      - name: Translate missing Chinese descriptions
+        env:
+          BAIDU_APP_ID: ${{ secrets.BAIDU_APP_ID }}
+          BAIDU_SECRET_KEY: ${{ secrets.BAIDU_SECRET_KEY }}
+        run: python scripts/translate_locales.py
+
       - name: Commit refreshed data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # The local client cache is ignored, but the published copy must be tracked.
-          git add -f data/projects.json
+          git add -f data/projects.json data/project_locales.json data/baidu_translation_usage.json
           git diff --cached --quiet || git commit -m "chore: refresh project data"
           git push
 
