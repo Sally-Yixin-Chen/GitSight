@@ -11,6 +11,7 @@ from .data_manager import load_projects as load_json_projects
 from .data_manager import save_projects
 from .github_api import extract_repo_data, get_contributor_count, search_repositories
 from .runtime_paths import (
+    BUNDLED_DATA_FILE,
     BUNDLED_LEGACY_DATA_FILE,
     DEFAULT_DATA_FILE,
     LEGACY_DATA_FILE,
@@ -107,10 +108,16 @@ def _days_since(value: Any) -> int:
 
 
 def load_cached_projects(file_path: str | Path = DEFAULT_CACHE_FILE) -> list[dict[str, Any]]:
-    """读取最近一次成功更新的缓存；不会调用 GitHub API。
+    """读取已生成的项目缓存；不会调用 GitHub API。
 
-    首次定时刷新尚未完成时，兼容读取项目自带的示例数据，保证网站可访问。
+    打包后的程序优先读取 exe 内置的周缓存快照，保证每次启动都使用
+    打包时的数据。源码运行时读取项目目录下的 data/projects.json。
     """
+    if BUNDLED_DATA_FILE != Path(file_path) and BUNDLED_DATA_FILE.exists():
+        bundled_projects = load_json_projects(BUNDLED_DATA_FILE)
+        if bundled_projects:
+            return bundled_projects
+
     projects = load_json_projects(file_path)
     if projects or Path(file_path) != DEFAULT_CACHE_FILE:
         return projects

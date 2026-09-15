@@ -1,6 +1,32 @@
 # GitSight
 
-GitSight 是一个基于 Flask 的 GitHub 项目热度排行榜示例应用。应用从本地缓存读取仓库数据，计算热度分数，并提供排行榜和项目详情页。网页访问不会直接调用 GitHub API。
+GitSight 是一个帮助你发现优质 GitHub 开源项目的轻量级排行榜工具。它把项目的 Stars、Forks、近期活跃度和学习适配度整理成一个直观的热度榜，让你更快找到值得关注、学习或参与的项目。
+
+## 面向用户的产品介绍
+
+### GitSight 能做什么
+
+- **快速发现热门项目**：打开首页即可查看当前缓存中的 TOP10 项目和热度分数。
+- **按兴趣筛选**：选择 Python、Web、机器学习等 Topic，生成更符合自己兴趣的个性化榜单。
+- **了解项目详情**：点击项目可以查看中文名称、项目简介、主要语言、Stars、Forks、Issue 数量、贡献者和最近活跃情况。
+- **直接访问原项目**：详情页提供 GitHub 原项目链接，方便继续阅读文档、查看代码或参与贡献。
+- **适合本地使用**：Windows 用户可以直接运行 GitSight.exe；程序在本机打开网页，不需要额外安装 Python。
+
+### 如何使用
+
+最简单的方式是访问公开网站：
+
+<https://sally-yixin-chen.github.io/GitSight/>
+
+也可以下载项目发布的 Windows EXE，双击后等待浏览器自动打开。首页显示的是最近一次数据刷新生成的快照，因此打开榜单不会向 GitHub 发起请求，访问速度更稳定，也不会要求用户配置 GitHub Token。
+
+### 榜单如何计算
+
+GitSight 会综合项目受欢迎度、近期活跃度和学生适配度计算热度分数。分数用于帮助用户进行初步筛选，不代表项目质量的绝对结论；选择项目时仍建议结合项目文档、维护状态、Issue 和自身学习目标判断。
+
+### 数据更新与隐私
+
+公开网站和 EXE 使用每周一生成的项目数据快照。数据由项目维护者通过 GitHub Actions 定期刷新，普通用户不需要登录 GitHub，也不需要提供个人 Token。程序主要读取本地或公开缓存数据，不会把用户的浏览行为上传到 GitSight。
 
 ## 快速开始
 
@@ -44,7 +70,7 @@ pip install -r requirements.txt
 dist\GitSight.exe
 ```
 
-EXE 使用根目录的 `logo.png` 生成 Windows 图标文件 `logo.ico`，并将网页所需的
+EXE 使用 `static/logo.ico` 作为 Windows 图标，并将网页所需的
 `static` 目录一起打包。重新打包时会使用独立的 `build-exe` 工作目录，避免旧缓存
 被占用导致打包失败。
 
@@ -83,9 +109,10 @@ Pages 的公开网站地址，供他人直接访问，也供普通用户的 EXE 
 `_site` 目录改为发布到其他公开静态托管服务，并将 `GITSIGHT_PUBLIC_DATA_URL`
 改成新的 `projects.json` 地址。EXE 中不放置 GitHub Token。
 
-EXE 启动时会先下载公开数据；网络不可用或服务暂时失败时，会继续使用上次成功
-下载的本地缓存。缓存位于 `%LOCALAPPDATA%\GitSight\data\projects.json`，普通
-用户具有写入权限。
+`app.py`、`GitSight.exe` 和 GitHub Pages 公网网址都只读取本周一生成的缓存快照，
+打开应用或访问网页不会调用 GitHub API。EXE 打包时会把 `data/projects.json` 内置
+到程序中，因此每次启动都使用该周快照；需要更新数据时，由周一的 GitHub Actions
+重新生成缓存并重新打包 EXE。
 
 开发者仍可以手动从 GitHub API 获取项目数据并写入本地缓存：
 
@@ -93,14 +120,18 @@ EXE 启动时会先下载公开数据；网络不可用或服务暂时失败时�
 python scripts/refresh_projects.py
 ```
 
-默认缓存文件为 `data/projects.json`。如果缓存尚未生成，应用会回退读取 `data/repos.json` 中的示例数据。需要提高 GitHub API 访问额度时，可设置 `GITHUB_TOKEN` 环境变量。
+默认缓存文件为 `data/projects.json`。如果缓存尚未生成，应用会回退读取 `data/repos.json` 中的示例数据。
+只有 `scripts/refresh_projects.py` 和 GitHub Actions 的周一任务会调用 GitHub API；需要提高
+GitHub API 访问额度时，可设置 `GITHUB_TOKEN` 环境变量。
 
 ## 维护项目中文名和中文介绍
 
 项目列表中的中文信息维护在 `data/project_locales.json`。对象的键必须使用 GitHub
 仓库的完整名称，例如 `facebook/react`；`name` 是中文项目名，`description` 是列表
-中显示的中文介绍。GitHub 每周刷新项目数据时不会覆盖这个文件，因此只需编辑它即可
-更新页面文案。没有配置的新增项目会使用仓库名和“暂无中文项目介绍”的兜底文案。
+中显示的中文介绍。每周一刷新时，已有人工中文简介优先；GitHub 返回的简介如果本身
+是中文则直接保存，否则使用百度通用文本翻译 API 补充缺失翻译。需要在仓库 Actions
+Secrets 中配置 `BAIDU_APP_ID` 和 `BAIDU_SECRET_KEY`；没有密钥或翻译失败时，页面
+回退到英文简介或默认提示。程序将每月翻译字符安全上限设为 90 万，避免超过免费额度。
 
 开发者也可以使用 Windows 定时任务：
 
@@ -134,6 +165,8 @@ GitSight/
 │   ├── build_exe.ps1             # Windows exe 打包脚本
 │   ├── refresh_projects.py       # 手动刷新项目缓存
 │   └── setup_weekly_refresh.ps1  # 配置 Windows 定时刷新
+├── static/
+│   └── logo.ico                  # 应用和网页使用的图标
 ├── requirements.txt               # Python 运行与打包依赖
 ├── GitSight.spec                  # PyInstaller 打包配置
 └── README.md
@@ -148,7 +181,7 @@ GitSight/
 3. 推送分支后创建 Pull Request，至少由一名成员 review 后再合并。
 4. 合并前确认应用可以正常启动，并同步最新的 `main` 分支。
 
-## 后续开发方向
+## 维护建议
 
-- 增加依赖文件与部署配置
-- 为热度计算和页面路由补充测试
+如果继续扩展项目，建议为热度计算、筛选逻辑和页面路由补充自动化测试，并在发布前验证
+Windows EXE 和 GitHub Pages 页面均能正常启动与访问。

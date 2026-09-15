@@ -35,5 +35,5 @@ exe = EXE(
     strip=False,
     upx=True,
     console=True,
-    icon=str(project_root / "logo.ico"),
+    icon=str(project_root / "static" / "logo.ico"),
 )

@@ -29,5 +29,6 @@ def user_data_root() -> Path:
 
 DATA_ROOT = user_data_root()
 DEFAULT_DATA_FILE = DATA_ROOT / "data" / "projects.json"
+BUNDLED_DATA_FILE = BUNDLED_ROOT / "data" / "projects.json"
 LEGACY_DATA_FILE = DATA_ROOT / "data" / "repos.json"
 BUNDLED_LEGACY_DATA_FILE = BUNDLED_ROOT / "data" / "repos.json"

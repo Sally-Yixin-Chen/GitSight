@@ -68,8 +68,13 @@ def with_project_locales(
             or repository.rsplit("/", 1)[-1]
         )
         record["chinese_description"] = (
-            str(record.get("chinese_description") or source.get("description") or "").strip()
-            or "暂无中文项目介绍，点击项目名称查看 GitHub 原始简介。"
+            str(
+                record.get("chinese_description")
+                or source.get("description")
+                or record.get("description")
+                or ""
+            ).strip()
+            or "暂无项目简介，点击项目名称查看 GitHub 原始简介。"
         )
         localized.append(record)
     return localized
