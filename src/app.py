@@ -104,7 +104,7 @@ def index():
         """<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>GitSight 热度排行榜</title>"""
         + PAGE_STYLE
         + """</head><body><main class='shell'>
-        <header class='topbar'><a class='brand' href='{{ url_for("index") }}'><span class='brand-mark'><img src='{{ url_for("static", filename="gitsight-logo.png") }}' alt=''></span>GitSight</a><span class='status'><span class='status-dot' aria-hidden='true'></span>缓存数据已就绪</span></header>
+        <header class='topbar'><div class='brand'><span class='brand-mark'><img src='{{ url_for("static", filename="gitsight-logo.png") }}' alt=''></span>GitSight</div><span class='status'><span class='status-dot' aria-hidden='true'></span>缓存数据已就绪</span></header>
         <section class='hero'><div><p class='eyebrow'>From GitHub, See a Bigger World.</p><h1>GitHub 热门项目<br><span class='title-accent'>排行榜</span></h1><p class='hero-copy'>看见更大的世界</p></div>
         <div class='metric-grid'><div class='metric'><span class='metric-label'>缓存项目</span><strong class='metric-value'>{{ project_count }}</strong></div><div class='metric'><span class='metric-label'>当前榜单</span><strong class='metric-value'>TOP {{ projects|length }}</strong></div></div></section>
         <section class='panel'><div class='panel-head'><div><h2>✨ 我的榜单我做主</h2><p class='panel-note'>选择兴趣标签，查看你的专属推荐</p></div><a class='clear' href='{{ url_for("index") }}'>重置筛选</a></div>

@@ -25,9 +25,11 @@ def _static_path(html: bytes, nested: bool = False) -> bytes:
     text = html.decode("utf-8")
     prefix = "../../../" if nested else ""
     text = text.replace('href="/"', f'href="{prefix}./"')
+    text = text.replace("href='/'", f"href='{prefix}./'")
     text = text.replace('src="/static/', f'src="{prefix}static/')
-    if nested:
-        text = text.replace('href="/static/', f'href="{prefix}static/')
+    text = text.replace("src='/static/", f"src='{prefix}static/")
+    text = text.replace('href="/static/', f'href="{prefix}static/')
+    text = text.replace("href='/static/", f"href='{prefix}static/")
     return text.encode("utf-8")
 
 
