@@ -44,6 +44,10 @@ pip install -r requirements.txt
 dist\GitSight.exe
 ```
 
+EXE 使用根目录的 `logo.png` 生成 Windows 图标文件 `logo.ico`，并将网页所需的
+`static` 目录一起打包。重新打包时会使用独立的 `build-exe` 工作目录，避免旧缓存
+被占用导致打包失败。
+
 只需将 `dist\GitSight.exe` 这一个文件复制到另一台 Windows 电脑。双击后，程序会启动本地服务并打开浏览器访问 `http://127.0.0.1:5000`。
 
 ### 数据文件说明

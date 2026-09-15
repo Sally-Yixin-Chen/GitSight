@@ -9,7 +9,10 @@ a = Analysis(
     [str(project_root / "app.py")],
     pathex=[str(project_root)],
     binaries=[],
-    datas=[(str(project_root / "data"), "data")],
+    datas=[
+        (str(project_root / "data"), "data"),
+        (str(project_root / "static"), "static"),
+    ],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -32,4 +35,5 @@ exe = EXE(
     strip=False,
     upx=True,
     console=True,
+    icon=str(project_root / "logo.ico"),
 )
