@@ -40,8 +40,8 @@ def _add_static_filter(html: bytes, ranked: list[dict[str, object]]) -> bytes:
     """Add client-side topic filtering so the static homepage remains interactive."""
     payload = json.dumps(ranked, ensure_ascii=False).replace("<", "\\u003c")
     html = html.replace(
-        b"<button type='submit'>生成 TOP10</button>",
-        b"<button type='button' id='gitsight-filter-submit'>生成 TOP10</button>",
+        "<button type='submit'>生成 TOP10</button>".encode("utf-8"),
+        "<button type='button' id='gitsight-filter-submit'>生成 TOP10</button>".encode("utf-8"),
     )
     script = f"""
 <script type="application/json" id="gitsight-data">{payload}</script>
