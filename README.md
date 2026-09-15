@@ -68,7 +68,7 @@ EXE 使用根目录的 `logo.png` 生成 Windows 图标文件 `logo.ico`，并�
 项目数据由 GitHub Actions 每周一北京时间 09:00 自动刷新。工作流使用
 GitHub Actions 自带的 `GITHUB_TOKEN` 访问私有仓库和 GitHub API，不会把令牌
 写入 EXE。刷新后的 `data/projects.json` 会提交回私有仓库，同时发布到 GitHub
-Pages 的公开只读地址，供普通用户的 EXE 下载。
+Pages 的公开网站地址，供他人直接访问，也供普通用户的 EXE 下载最新数据。
 
 首次启用时，需要在 GitHub 仓库完成以下设置：
 
@@ -77,9 +77,9 @@ Pages 的公开只读地址，供普通用户的 EXE 下载。
 2. 在 **Settings → Pages** 中，将 Source 设为 **GitHub Actions**。
 3. 在 **Actions → Refresh and publish project data** 中手动运行一次。
 4. 确认以下地址可以在未登录 GitHub 的浏览器中打开：
-   `https://sally-yixin-chen.github.io/GitSight/projects.json`
+   `https://sally-yixin-chen.github.io/GitSight/`
 
-如果当前 GitHub 账号/组织不允许从私有仓库公开 GitHub Pages，需要把工作流中的
+如果当前 GitHub 账号/组织不允许从仓库公开 GitHub Pages，需要把工作流中的
 `_site` 目录改为发布到其他公开静态托管服务，并将 `GITSIGHT_PUBLIC_DATA_URL`
 改成新的 `projects.json` 地址。EXE 中不放置 GitHub Token。
 

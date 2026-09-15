@@ -13,6 +13,7 @@ ENV/
 build/
 build-exe/
 dist/
+_site/
 *.egg-info/
 .eggs/
 pip-wheel-metadata/

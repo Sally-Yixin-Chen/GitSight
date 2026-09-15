@@ -49,11 +49,12 @@ jobs:
         with:
           enablement: true
 
+      - name: Build static public website
+        run: python scripts/build_static_site.py
+
       - name: Prepare public read-only data
         run: |
           mkdir -p _site
-          cp data/projects.json _site/projects.json
-          printf '%s\n' '{"status":"ok"}' > _site/health.json
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
