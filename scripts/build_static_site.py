@@ -39,6 +39,10 @@ def _detail_relative_path(full_name: str) -> Path:
 def _add_static_filter(html: bytes, ranked: list[dict[str, object]]) -> bytes:
     """Add client-side topic filtering so the static homepage remains interactive."""
     payload = json.dumps(ranked, ensure_ascii=False).replace("<", "\\u003c")
+    html = html.replace(
+        b"<button type='submit'>生成 TOP10</button>",
+        b"<button type='button' id='gitsight-filter-submit'>生成 TOP10</button>",
+    )
     script = f"""
 <script type="application/json" id="gitsight-data">{payload}</script>
 <script>
@@ -47,6 +51,7 @@ def _add_static_filter(html: bytes, ranked: list[dict[str, object]]) -> bytes:
   const form = document.querySelector('form');
   const tbody = document.querySelector('tbody');
   const clear = document.querySelector('.clear');
+  const submit = document.querySelector('#gitsight-filter-submit');
   const count = document.querySelector('.metric-grid .metric:last-child .metric-value');
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[c]));
   const detailUrl = (p) => {{
@@ -66,7 +71,7 @@ def _add_static_filter(html: bytes, ranked: list[dict[str, object]]) -> bytes:
     }}).join('');
     count.textContent = `TOP ${{visible.length}}`;
   }};
-  form.addEventListener('submit', (event) => {{ event.preventDefault(); render([...form.querySelectorAll('input[name="topic"]:checked')].map((x) => x.value)); }});
+  submit.addEventListener('click', () => render([...form.querySelectorAll('input[name="topic"]:checked')].map((x) => x.value)));
   clear.addEventListener('click', (event) => {{ event.preventDefault(); form.reset(); render([]); }});
   render([]);
 }})();
