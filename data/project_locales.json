@@ -1,0 +1,122 @@
+{
+  "codecrafters-io/build-your-own-x": {
+    "name": "从零构建技术",
+    "description": "通过亲手复刻常见技术，系统学习编程和软件工程。"
+  },
+  "sindresorhus/awesome": {
+    "name": "精选资源清单",
+    "description": "汇集各种有趣主题的高质量资源列表。"
+  },
+  "public-apis/public-apis": {
+    "name": "公共 API 清单",
+    "description": "整理免费可用的公共 API，方便快速查找和集成。"
+  },
+  "freecodecamp/freecodecamp": {
+    "name": "freeCodeCamp 编程学习",
+    "description": "免费的编程、数学和计算机科学学习课程与开源平台。"
+  },
+  "ebookfoundation/free-programming-books": {
+    "name": "免费编程书籍",
+    "description": "整理可免费阅读的编程书籍和学习资料。"
+  },
+  "openclaw/openclaw": {
+    "name": "OpenClaw 智能助手",
+    "description": "面向多操作系统和多平台的 AI 助手，强调自主执行任务。"
+  },
+  "donnemartin/system-design-primer": {
+    "name": "系统设计入门",
+    "description": "帮助学习大规模系统设计，并准备系统设计面试。"
+  },
+  "nilbuild/developer-roadmap": {
+    "name": "开发者学习路线图",
+    "description": "提供交互式学习路线、指南和职业成长资料。"
+  },
+  "jwasham/coding-interview-university": {
+    "name": "编程面试大学",
+    "description": "帮助学习计算机科学并成长为软件工程师的完整学习计划。"
+  },
+  "vinta/awesome-python": {
+    "name": "精选 Python 资源",
+    "description": "回答“我想用 Python 完成某件事时该选什么工具”的资源清单。"
+  },
+  "awesome-selfhosted/awesome-selfhosted": {
+    "name": "精选自托管服务",
+    "description": "整理可以部署在自己服务器上的自由软件、网络服务和 Web 应用。"
+  },
+  "obra/superpowers": {
+    "name": "Superpowers 智能开发框架",
+    "description": "面向智能代理的技能框架和软件开发方法论。"
+  },
+  "practical-tutorials/project-based-learning": {
+    "name": "项目实战学习",
+    "description": "整理通过实际项目学习编程和软件开发的教程。"
+  },
+  "996icu/996.icu": {
+    "name": "996.ICU",
+    "description": "记录 996 工作制度讨论与开发者社区贡献的项目。"
+  },
+  "mattpocock/skills": {
+    "name": "工程师技能集",
+    "description": "面向真实工程实践的开发技能与代理配置集合。"
+  },
+  "affaan-m/ecc": {
+    "name": "工程能力中心",
+    "description": "优化智能代理开发流程，覆盖技能、记忆、安全和研究实践。"
+  },
+  "react/react": {
+    "name": "React",
+    "description": "用于构建 Web 和原生用户界面的 JavaScript 库。"
+  },
+  "torvalds/linux": {
+    "name": "Linux 内核",
+    "description": "Linux 操作系统内核源代码。"
+  },
+  "nousresearch/hermes-agent": {
+    "name": "Hermes 智能代理",
+    "description": "能够伴随用户持续成长的 AI 智能代理。"
+  },
+  "trimstray/the-book-of-secret-knowledge": {
+    "name": "秘密知识之书",
+    "description": "汇集清单、手册、速查表、博客、技巧和命令行工具等资料。"
+  },
+  "thealgorithms/python": {
+    "name": "Python 算法",
+    "description": "使用 Python 实现各种算法和数据结构。"
+  },
+  "deepseek-ai/deepseek-harness": {
+    "name": "DeepSeek Harness",
+    "description": "以插件为核心的 DeepSeek 智能代理运行框架。"
+  },
+  "multica-ai/andrej-karpathy-skills": {
+    "name": "Andrej Karpathy 编程技能",
+    "description": "根据 Andrej Karpathy 对大模型编程陷阱的观察整理而成的开发技能。"
+  },
+  "vuejs/vue": {
+    "name": "Vue 2",
+    "description": "Vue 2 的源代码仓库；Vue 3 请查看 Vue 官方核心仓库。"
+  },
+  "ossu/computer-science": {
+    "name": "开放计算机科学课程",
+    "description": "帮助自学计算机科学的免费课程学习路线。"
+  },
+  "anomalyco/opencode": {
+    "name": "OpenCode 编程代理",
+    "description": "开源的智能编程代理。"
+  },
+  "n8n-io/n8n": {
+    "name": "n8n 工作流自动化",
+    "description": "支持 AI 和数百种集成的可视化工作流自动化平台，也支持自托管。"
+  },
+  "tensorflow/tensorflow": {
+    "name": "TensorFlow",
+    "description": "面向所有人的开源机器学习框架。"
+  },
+  "digitalplatdev/freedomain": {
+    "name": "免费域名",
+    "description": "提供免费域名注册和 DNS 学习资源。"
+  },
+  "trekhleb/javascript-algorithms": {
+    "name": "JavaScript 算法",
+    "description": "使用 JavaScript 实现算法和数据结构，并提供解释与延伸阅读。"
+  }
+}

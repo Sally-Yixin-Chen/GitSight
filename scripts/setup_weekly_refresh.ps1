@@ -1,32 +1,56 @@
 param(
+    [ValidateSet("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN")]
     [string]$Day = "MON",
+
+    [ValidatePattern("^([01]\d|2[0-3]):[0-5]\d$")]
     [string]$Time = "09:00"
 )
 
+$taskName = "GitSight Weekly Refresh"
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $refreshScript = Join-Path $PSScriptRoot "refresh_projects.py"
 
-$python = $null
-
-# Prefer Python 3.13 from the Python Launcher; otherwise use Python from PATH.
-$pyLauncher = Get-Command py.exe -ErrorAction SilentlyContinue
-if ($pyLauncher) {
-    $python313 = & $pyLauncher.Source -3.13 -c "import sys; print(sys.executable)" 2>$null | Select-Object -First 1
-    if ($python313 -and (Test-Path -LiteralPath $python313)) {
-        $python = $python313
-    }
+$pythonCommand = Get-Command python.exe -ErrorAction SilentlyContinue
+if (-not $pythonCommand) {
+    throw "python.exe was not found. Install Python and add it to PATH."
 }
 
-if (-not $python) {
-    $pythonCommand = Get-Command python.exe -ErrorAction SilentlyContinue
-    if ($pythonCommand -and (Test-Path -LiteralPath $pythonCommand.Source)) {
-        $python = $pythonCommand.Source
-    }
+$python = $pythonCommand.Source
+if (-not (Test-Path -LiteralPath $refreshScript -PathType Leaf)) {
+    throw "Refresh script was not found: $refreshScript"
 }
 
-if (-not $python) {
-    throw "No usable Python installation was found. Install Python 3.13 or add Python to PATH."
+$dayMap = @{
+    MON = [System.DayOfWeek]::Monday
+    TUE = [System.DayOfWeek]::Tuesday
+    WED = [System.DayOfWeek]::Wednesday
+    THU = [System.DayOfWeek]::Thursday
+    FRI = [System.DayOfWeek]::Friday
+    SAT = [System.DayOfWeek]::Saturday
+    SUN = [System.DayOfWeek]::Sunday
 }
 
-$taskCommand = '"{0}" "{1}"' -f $python, $refreshScript
-schtasks /Create /F /SC WEEKLY /D $Day /ST $Time /TN "GitSight Weekly Refresh" /TR $taskCommand
+$at = [datetime]::ParseExact(
+    $Time,
+    "HH:mm",
+    [System.Globalization.CultureInfo]::InvariantCulture
+)
+
+$action = New-ScheduledTaskAction `
+    -Execute $python `
+    -Argument ('"{0}"' -f $refreshScript) `
+    -WorkingDirectory $projectRoot
+$trigger = New-ScheduledTaskTrigger `
+    -Weekly `
+    -DaysOfWeek $dayMap[$Day] `
+    -At $at
+$settings = New-ScheduledTaskSettingsSet -StartWhenAvailable
+
+Register-ScheduledTask `
+    -TaskName $taskName `
+    -Action $action `
+    -Trigger $trigger `
+    -Settings $settings `
+    -Force | Out-Null
+
+Write-Host "Created weekly refresh task: $taskName"

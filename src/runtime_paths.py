@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -14,8 +15,19 @@ def application_root() -> Path:
 
 
 APPLICATION_ROOT = application_root()
-DEFAULT_DATA_FILE = APPLICATION_ROOT / "data" / "projects.json"
-LEGACY_DATA_FILE = APPLICATION_ROOT / "data" / "repos.json"
 # PyInstaller 6 places bundled data under its internal runtime directory.
 BUNDLED_ROOT = Path(getattr(sys, "_MEIPASS", APPLICATION_ROOT))
+
+
+def user_data_root() -> Path:
+    """Return a writable per-user directory for a packaged desktop client."""
+    local_app_data = os.getenv("LOCALAPPDATA")
+    if getattr(sys, "frozen", False) and local_app_data:
+        return Path(local_app_data) / "GitSight"
+    return APPLICATION_ROOT
+
+
+DATA_ROOT = user_data_root()
+DEFAULT_DATA_FILE = DATA_ROOT / "data" / "projects.json"
+LEGACY_DATA_FILE = DATA_ROOT / "data" / "repos.json"
 BUNDLED_LEGACY_DATA_FILE = BUNDLED_ROOT / "data" / "repos.json"

@@ -36,6 +36,8 @@ def get_project_detail(project: Optional[Dict[str, Any]]) -> Optional[Dict[str, 
     owner, separator, repository = project_name.partition("/")
     return {
         "name": project_name or "未命名项目",
+        "chinese_name": project.get("chinese_name") or project_name or "未命名项目",
+        "chinese_description": project.get("chinese_description") or "暂无中文项目介绍",
         "owner": project.get("owner") or (owner if separator else ""),
         "repository": repository if separator else str(project.get("name", "")),
         "description": project.get("description") or "暂无项目简介",
@@ -46,7 +48,11 @@ def get_project_detail(project: Optional[Dict[str, Any]]) -> Optional[Dict[str, 
         "forks": project.get("forks", 0),
         "open_issues": project.get("open_issues", 0),
         "last_push_days": project.get("last_push_days", 0),
-        "contributors": project.get("contributors", 0),
+        "contributors": (
+            project["contributors"]
+            if "contributors" in project and project["contributors"] is not None
+            else ("暂不可获取" if "contributors" in project else 0)
+        ),
         "size_kb": project.get("size_kb", 0),
         "hot_score": project.get("hot_score"),
     }

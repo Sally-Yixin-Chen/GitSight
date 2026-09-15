@@ -59,9 +59,31 @@ dist\GitSight.exe
 - **Windows Defender 提示未知发布者**：这是未签名的内部/个人构建程序，不代表程序一定有问题；可先确认 exe 来源。
 - **换电脑后不能刷新数据**：检查目标电脑网络、GitHub 访问权限和 `GITHUB_TOKEN` 环境变量。
 
-## 刷新项目数据
+## 自动刷新项目数据
 
-手动从 GitHub API 获取项目数据并写入缓存：
+项目数据由 GitHub Actions 每周一北京时间 09:00 自动刷新。工作流使用
+GitHub Actions 自带的 `GITHUB_TOKEN` 访问私有仓库和 GitHub API，不会把令牌
+写入 EXE。刷新后的 `data/projects.json` 会提交回私有仓库，同时发布到 GitHub
+Pages 的公开只读地址，供普通用户的 EXE 下载。
+
+首次启用时，需要在 GitHub 仓库完成以下设置：
+
+1. 在 **Settings → Actions → General** 中，将 Workflow permissions 设为
+   **Read and write permissions**。
+2. 在 **Settings → Pages** 中，将 Source 设为 **GitHub Actions**。
+3. 在 **Actions → Refresh and publish project data** 中手动运行一次。
+4. 确认以下地址可以在未登录 GitHub 的浏览器中打开：
+   `https://sally-yixin-chen.github.io/GitSight/projects.json`
+
+如果当前 GitHub 账号/组织不允许从私有仓库公开 GitHub Pages，需要把工作流中的
+`_site` 目录改为发布到其他公开静态托管服务，并将 `GITSIGHT_PUBLIC_DATA_URL`
+改成新的 `projects.json` 地址。EXE 中不放置 GitHub Token。
+
+EXE 启动时会先下载公开数据；网络不可用或服务暂时失败时，会继续使用上次成功
+下载的本地缓存。缓存位于 `%LOCALAPPDATA%\GitSight\data\projects.json`，普通
+用户具有写入权限。
+
+开发者仍可以手动从 GitHub API 获取项目数据并写入本地缓存：
 
 ```bash
 python scripts/refresh_projects.py
@@ -69,7 +91,14 @@ python scripts/refresh_projects.py
 
 默认缓存文件为 `data/projects.json`。如果缓存尚未生成，应用会回退读取 `data/repos.json` 中的示例数据。需要提高 GitHub API 访问额度时，可设置 `GITHUB_TOKEN` 环境变量。
 
-Windows 定时任务可以使用：
+## 维护项目中文名和中文介绍
+
+项目列表中的中文信息维护在 `data/project_locales.json`。对象的键必须使用 GitHub
+仓库的完整名称，例如 `facebook/react`；`name` 是中文项目名，`description` 是列表
+中显示的中文介绍。GitHub 每周刷新项目数据时不会覆盖这个文件，因此只需编辑它即可
+更新页面文案。没有配置的新增项目会使用仓库名和“暂无中文项目介绍”的兜底文案。
+
+开发者也可以使用 Windows 定时任务：
 
 ```powershell
 .\scripts\setup_weekly_refresh.ps1
@@ -79,15 +108,20 @@ Windows 定时任务可以使用：
 
 ```text
 GitSight/
+├── .github/
+│   └── workflows/
+│       └── refresh-and-publish.yml  # 每周刷新并发布公开数据
 ├── app.py                 # 根目录启动入口
 ├── data/
 │   ├── repos.json         # 示例仓库数据
+│   ├── project_locales.json # 项目中文名和中文介绍
 │   └── projects.json      # GitHub API 刷新生成的本地缓存
 ├── src/
 │   ├── __init__.py
 │   ├── app.py             # Flask 应用和页面路由
 │   ├── data_manager.py    # JSON 数据读写
 │   ├── data_refresh.py     # 项目缓存刷新和读取
+│   ├── remote_data.py      # 下载公开项目缓存并保存到本地
 │   ├── filter.py           # Topic 筛选和个性化推荐
 │   ├── github_api.py       # GitHub API 访问
 │   ├── ranking.py         # 候选项目排行榜逻辑

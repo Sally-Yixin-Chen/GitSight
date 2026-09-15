@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from .data_manager import load_projects as load_json_projects
 from .data_manager import save_projects
-from .github_api import extract_repo_data, search_repositories
+from .github_api import extract_repo_data, get_contributor_count, search_repositories
 from .runtime_paths import (
     BUNDLED_LEGACY_DATA_FILE,
     DEFAULT_DATA_FILE,
@@ -18,7 +19,7 @@ from .runtime_paths import (
 
 DEFAULT_CACHE_FILE = DEFAULT_DATA_FILE
 DEFAULT_QUERY = os.getenv("GITHUB_SEARCH_QUERY", "stars:>1000")
-DEFAULT_RESULTS_PER_PAGE = 30
+DEFAULT_RESULTS_PER_PAGE = 100
 
 # GitHub Topics 中常见的同义词与宽泛标签。它们不适合作为“差异化筛选”
 # 的主选项：例如 awesome/list/resources 会指向相同类型的资源集合。
@@ -79,9 +80,30 @@ def refresh_project_cache(
         order="desc",
         per_page=per_page,
     )
-    projects = [extract_repo_data(repository) for repository in repositories]
+    projects = []
+    for repository in repositories:
+        project = extract_repo_data(repository)
+        full_name = project.get("full_name", "")
+        if full_name:
+            project["contributors"] = get_contributor_count(full_name)
+        project["last_push_days"] = _days_since(project.get("pushed_at"))
+        projects.append(project)
     save_projects(projects, file_path)
     return projects
+
+
+def _days_since(value: Any) -> int:
+    """Convert an ISO timestamp into whole days elapsed from the current time."""
+    if not isinstance(value, str) or not value.strip():
+        return 0
+    try:
+        updated = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return 0
+    if updated.tzinfo is None:
+        updated = updated.replace(tzinfo=timezone.utc)
+    elapsed = datetime.now(timezone.utc) - updated.astimezone(timezone.utc)
+    return max(0, int(elapsed.total_seconds() / 86400))
 
 
 def load_cached_projects(file_path: str | Path = DEFAULT_CACHE_FILE) -> list[dict[str, Any]]:
