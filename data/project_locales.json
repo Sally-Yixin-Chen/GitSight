@@ -118,5 +118,236 @@
   "trekhleb/javascript-algorithms": {
     "name": "JavaScript 算法",
     "description": "使用 JavaScript 实现算法和数据结构，并提供解释与延伸阅读。"
+  },
+  "freeCodeCamp/freeCodeCamp": {
+    "description": "freeCodeCamp的开源代码库和课程。免费学习数学、编程和计算机科学。"
+  },
+  "EbookFoundation/free-programming-books": {
+    "description": "：books：免费提供的编程书籍"
+  },
+  "996icu/996.ICU": {
+    "description": "Repo用于计数星星和做出贡献。按F向光荣的开发者致敬。"
+  },
+  "affaan-m/ECC": {
+    "description": "代理线束性能优化系统。Claude Code、Codex、Opencode、Cursor等的技能、直觉、记忆、安全和研究优先开发。"
+  },
+  "NousResearch/hermes-agent": {
+    "description": "与你共同成长的代理人"
+  },
+  "TheAlgorithms/Python": {
+    "description": "所有用Python实现的算法"
+  },
+  "DigitalPlatDev/FreeDomain": {
+    "description": "免费域名注册和实用的DNS学习资源。"
+  },
+  "ultraworkers/claw-code": {
+    "description": "一个由代理人管理的博物馆展览，用Rust和Gajae Code/LazyCodex构建，在没有人为干预的情况下开发和维护。"
+  },
+  "microsoft/vscode": {
+    "description": "Visual Studio Code"
+  },
+  "yt-dlp/yt-dlp": {
+    "description": "功能丰富的命令行音频/视频下载器"
+  },
+  "massgravel/Microsoft-Activation-Scripts": {
+    "description": "开源Windows和Office激活器，具有HWID、Ohook、TSforge和在线KMS激活方法，以及高级故障排除功能。"
+  },
+  "ohmyzsh/ohmyzsh": {
+    "description": "🙃   一个令人愉快的社区驱动（拥有2500多名贡献者）框架，用于管理您的zsh配置。包括300多个可选插件（rails、git、macOS、hub、docker、homebrew、node、php、python等），140多个主题为您的早晨增添趣味，以及一个自动更新工具，可以轻松跟上社区的最新更新。"
+  },
+  "Significant-Gravitas/AutoGPT": {
+    "description": "AutoGPT的愿景是让每个人都能使用和构建可访问的AI。我们的使命是提供工具，让您能够专注于重要的事情。"
+  },
+  "jackfrued/Python-100-Days": {
+    "description": "Python - 100天从新手到大师"
+  },
+  "CyC2018/CS-Notes": {
+    "description": ":books: 技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计"
+  },
+  "getify/You-Dont-Know-JS": {
+    "description": "关于JS语言的系列丛书（2个出版版本）。"
+  },
+  "avelino/awesome-go": {
+    "description": "精心策划的优秀Go框架、库和软件列表"
+  },
+  "microsoft/markitdown": {
+    "description": "用于将文件和办公文档转换为Markdown的Python工具。"
+  },
+  "ollama/ollama": {
+    "description": "与Kimi、GLM、MiniMax、DeepSeek、gpt-oss、Qwen、Gemma等模特一起开始跑步。"
+  },
+  "firecrawl/firecrawl": {
+    "description": "上下文API，用于搜索、抓取和与网络进行大规模交互。 🔥"
+  },
+  "flutter/flutter": {
+    "description": "Flutter使为移动设备和其他设备构建漂亮的应用程序变得简单快捷"
+  },
+  "521xueweihan/HelloGitHub": {
+    "description": ":octocat: 分享 GitHub 上有趣、入门级的开源项目。Share interesting, entry-level open source projects on GitHub."
+  },
+  "anthropics/skills": {
+    "description": "Agent 技能公共仓库"
+  },
+  "github/gitignore": {
+    "description": "一组有用的.gitignore模板"
+  },
+  "twbs/bootstrap": {
+    "description": "最流行的HTML、CSS和JavaScript框架，用于在网络上开发响应式、移动优先的项目。"
+  },
+  "f/prompts.chat": {
+    "description": "f.k.a.很棒的ChatGPT提示。分享、发现和收集社区提示。免费开源——为您的组织提供完全隐私的自托管服务。"
+  },
+  "huggingface/transformers": {
+    "description": "🤗 Transformers：用于文本、视觉、音频和多模态模型中最先进的机器学习模型的模型定义框架，用于推理和训练。"
+  },
+  "AUTOMATIC1111/stable-diffusion-webui": {
+    "description": "稳定的扩散web UI"
+  },
+  "jlevy/the-art-of-command-line": {
+    "description": "在一个页面中掌握命令行"
+  },
+  "Snailclimb/JavaGuide": {
+    "description": "Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发"
+  },
+  "langgenius/dify": {
+    "description": "在一个协作工作空间上构建Agent工作流、RAG管道，并提供丰富的AI模型和工具支持。部署在云、VPC或自托管上，这样团队就可以从原型转移到生产环境，而无需重建堆栈。"
+  },
+  "langflow-ai/langflow": {
+    "description": "Langflow是构建和部署人工智能代理和工作流的强大工具。"
+  },
+  "msitarzewski/agency-agents": {
+    "description": "一个完整的人工智能机构触手可及——从前端向导到Reddit社区忍者，从奇思妙想的注射器到现实检查器。每个代理都是具有个性、流程和经过验证的可交付成果的专业专家。"
+  },
+  "open-webui/open-webui": {
+    "description": "用户友好的人工智能接口（支持Ollama、OpenAI API等）"
+  },
+  "Genymobile/scrcpy": {
+    "description": "显示和控制您的Android设备"
+  },
+  "airbnb/javascript": {
+    "description": "JavaScript风格指南"
+  },
+  "langchain-ai/langchain": {
+    "description": "代理工程平台。"
+  },
+  "anthropics/claude-code": {
+    "description": "Claude Code是一个代理编码工具，它位于您的终端中，了解您的代码库，并通过执行常规任务、解释复杂代码和处理git工作流来帮助您更快地编码——所有这些都是通过自然语言命令完成的。"
+  },
+  "clash-verge-rev/clash-verge-rev": {
+    "description": "基于Tauri的现代GUI客户端，设计用于在Windows、macOS和Linux中运行，以提供量身定制的代理体验"
+  },
+  "x1xhlol/system-prompts-and-models-of-ai-tools": {
+    "description": "FULL Augment Code、Claude Code、Cluely、CodeBuddy、Comet、Cursor、Devin AI、Junie、Kiro、Leap.new、Lovable、Manus、NotionAI、Orchids.app、困惑、Poke、Qoder、Replit、Same.dev、Trae、Traycer AI、VSCode Agent、Warp.dev、Windsurf、Xcode、Z.AI Code、Dia&v0。（和其他开源）系统提示、内部工具和人工智能模型"
+  },
+  "yangshun/tech-interview-handbook": {
+    "description": "为忙碌的软件工程师精心准备编码面试准备材料"
+  },
+  "vercel/next.js": {
+    "description": "React框架"
+  },
+  "ytdl-org/youtube-dl": {
+    "description": "从YouTube.com和其他视频网站下载视频的命令行程序"
+  },
+  "golang/go": {
+    "description": "Go编程语言"
+  },
+  "DietrichGebert/ponytail": {
+    "description": "让你的AI代理像房间里最懒惰的高级开发人员一样思考。最好的代码是你从未写过的代码。"
+  },
+  "microsoft/PowerToys": {
+    "description": "Microsoft PowerToys是一系列实用程序的集合，可以在Windows上提高生产力和定制能力"
+  },
+  "iptv-org/iptv": {
+    "description": "收集来自世界各地的公开IPTV频道"
+  },
+  "Shubhamsaboo/awesome-llm-apps": {
+    "description": "100多个人工智能代理、代理技能和RAG应用程序-免费开源。"
+  },
+  "ripienaar/free-for-dev": {
+    "description": "一份SaaS、PaaS和IaaS产品列表，这些产品具有devops和infradev感兴趣的免费级别"
+  },
+  "github/spec-kit": {
+    "description": "💫 帮助您开始规范驱动开发的工具包"
+  },
+  "labuladong/fucking-algorithm": {
+    "description": "破解LeetCode，不仅是如何，还有为什么。"
+  },
+  "Comfy-Org/ComfyUI": {
+    "description": "最强大和模块化的扩散模型GUI、api和后端，具有图形/节点界面。"
+  },
+  "garrytan/gstack": {
+    "description": "使用Garry Tan的Claude Code设置：23个有主见的工具，担任首席执行官、设计师、工程经理、发布经理、文档工程师和质量保证"
+  },
+  "farion1231/cc-switch": {
+    "description": "适用于Claude Code、Codex、OpenCode、OpenClaw、Grok Build和Hermes Agent的跨平台桌面一体化助手。唯一官方网站：ccswitch.io"
+  },
+  "excalidraw/excalidraw": {
+    "description": "用于绘制手绘图表的虚拟白板"
+  },
+  "krahets/hello-algo": {
+    "description": "《Hello 算法》：动画图解、一键运行的数据结构与算法教程。支持简中、繁中、English、日本語，提供 Python, Java, C++, C, C#, JS, Go, Swift, Rust, Ruby, Kotlin, TS, Dart 等代码实现"
+  },
+  "Chalarangelo/30-seconds-of-code": {
+    "description": "编写文章以提高您的开发技能"
+  },
+  "ggml-org/llama.cpp": {
+    "description": "C/C中的LLM推理++"
+  },
+  "kubernetes/kubernetes": {
+    "description": "生产级集装箱调度与管理"
+  },
+  "nextlevelbuilder/ui-ux-pro-max-skill": {
+    "description": "一种AI技能，为跨多个平台构建专业UI/UX提供设计智能。"
+  },
+  "react/react-native": {
+    "description": "使用React构建本地应用程序的框架"
+  },
+  "openai/codex": {
+    "description": "在终端中运行的轻量级编码代理"
+  },
+  "shadcn-ui/ui": {
+    "description": "具有深思熟虑的默认值的可组合、可访问的组件。使用可以自定义、扩展和创建自己的代码构建自己的组件库。"
+  },
+  "harry0703/MoneyPrinterTurbo": {
+    "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow."
+  },
+  "rustdesk/rustdesk": {
+    "description": "一个为自托管而设计的开源远程桌面应用程序，作为TeamViewer的替代品。"
+  },
+  "electron/electron": {
+    "description": "：electronic：使用JavaScript、HTML和CSS构建跨平台桌面应用程序"
+  },
+  "nodejs/node": {
+    "description": "Node.js JavaScript运行时✨🐢🚀✨"
+  },
+  "Hack-with-Github/Awesome-Hacking": {
+    "description": "为黑客、渗透测试人员和安全研究人员提供的各种精彩列表的集合"
+  },
+  "microsoft/generative-ai-for-beginners": {
+    "description": "21课，开始用生成式人工智能构建"
+  },
+  "rust-lang/rust": {
+    "description": "让每个人都能构建可靠高效的软件。"
+  },
+  "justjavac/free-programming-books-zh_CN": {
+    "description": ":books: 免费的计算机编程类中文书籍，欢迎投稿"
+  },
+  "godotengine/godot": {
+    "description": "Godot引擎–多平台2D和3D游戏引擎"
+  },
+  "Graphify-Labs/graphify": {
+    "description": "将任何代码库及其文档、SQL模式、配置和PDF转换为可查询的知识图。Claude Code、Cursor、Codex和Gemini CLI的图形化技能：本地确定性AST解析，每个边都有解释，没有向量存储。"
+  },
+  "2dust/v2rayN": {
+    "description": "适用于Windows、Linux和macOS的GUI客户端，支持Xray和singbox等"
+  },
+  "VoltAgent/awesome-design-md": {
+    "description": "流行品牌设计系统分析的DESIGN.md文件集。将一个添加到您的项目中，让编码代理生成匹配的UI。"
+  },
+  "mrdoob/three.js": {
+    "description": "JavaScript 3D库。"
+  },
+  "browser-use/browser-use": {
+    "description": "使用浏览器的代理。"
   }
 }
