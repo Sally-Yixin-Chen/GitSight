@@ -349,5 +349,8 @@
   },
   "browser-use/browser-use": {
     "description": "使用浏览器的代理。"
+  },
+  "morluto/rea": {
+    "description": "使用代理对任何东西进行逆向工程，从应用程序行为到本机二进制文件。"
   }
 }
