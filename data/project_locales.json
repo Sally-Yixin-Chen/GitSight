@@ -352,5 +352,8 @@
   },
   "morluto/rea": {
     "description": "使用代理对任何东西进行逆向工程，从应用程序行为到本机二进制文件。"
+  },
+  "TauricResearch/TradingAgents": {
+    "description": "TradingAgents：多代理LLM金融交易框架"
   }
 }
