@@ -355,5 +355,8 @@
   },
   "TauricResearch/TradingAgents": {
     "description": "TradingAgents：多代理LLM金融交易框架"
+  },
+  "earendil-works/pi": {
+    "description": "AI代理工具包：统一LLM API、代理循环、TUI、编码代理CLI"
   }
 }
