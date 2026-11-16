@@ -358,5 +358,8 @@
   },
   "earendil-works/pi": {
     "description": "AI代理工具包：统一LLM API、代理循环、TUI、编码代理CLI"
+  },
+  "stablyai/orca": {
+    "description": "Orca允许您使用自己的订阅运行一组编码代理（例如Claude Code、Codex）。可在桌面、移动和远程运行时使用。"
   }
 }
